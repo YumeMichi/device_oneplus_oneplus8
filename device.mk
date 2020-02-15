@@ -140,7 +140,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.display.sensortype=2 \
     vendor.display.enable_async_powermode=0 \
-    vendor.display.use_layer_ext=1
+    vendor.display.use_layer_ext=1 \
+    ro.surface_flinger.set_idle_timer_ms=4000 \
+    ro.surface_flinger.set_touch_timer_ms=4000 \
+    ro.surface_flinger.set_display_power_timer_ms=1000
 
 # Doze
 PRODUCT_PACKAGES += \
