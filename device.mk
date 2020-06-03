@@ -198,6 +198,9 @@ PRODUCT_PACKAGES += \
     init.target.rc \
     ueventd.oneplus.rc
 
+PRODUCT_PACKAGES += \
+    libinit_oneplus8
+
 # Keymaster
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.strongbox_keystore.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.strongbox_keystore.xml

@@ -85,6 +85,9 @@ DEVICE_MATRIX_FILE += device/qcom/common/compatibility_matrix.xml
 # Hacks
 BUILD_BROKEN_DUP_RULES := true
 
+# Init
+TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_oneplus8
+
 # Kernel
 BOARD_KERNEL_CMDLINE := \
     androidboot.boot_devices=soc/1d84000.ufshc \
