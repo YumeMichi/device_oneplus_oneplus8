@@ -235,6 +235,7 @@ PRODUCT_PACKAGES += \
     FrameworksResTarget \
     OnePlus8Frameworks \
     OnePlus8SeriesFrameworks \
+    OnePlus8SeriesSettings \
     OnePlus8SeriesSystemUI \
     OnePlus8SystemUI \
     WifiResTarget
