@@ -3,6 +3,11 @@ attribute hal_display;
 attribute hal_display_client;
 attribute hal_display_server;
 
+# Display (Pixelworks)
+attribute hal_display_iris;
+attribute hal_display_iris_client;
+attribute hal_display_iris_server;
+
 # IFAA
 attribute hal_ifaa;
 attribute hal_ifaa_client;
