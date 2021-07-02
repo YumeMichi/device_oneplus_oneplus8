@@ -22,10 +22,10 @@ vendor/lib64/vendor.qti.hardware.dsp@1.0.so|78e36705372a19ac664bb890dacd35a96e66
 vendor/firmware/a650_sqe.fw|12a8b97c9dd9de7eb759dada1ae11c5cdc08a2a2
 vendor/firmware/a650_gmu.bin|c744acb10afb7c980d333c5b6521e2a18993ff14
 vendor/firmware/a650_zap.b00|8c20cfff20d7fe9814581b353c1f58d38636e8c5
-vendor/firmware/a650_zap.b01|4036cd54c4258be2b95cd8ba17df60fbb25d61c4
+vendor/firmware/a650_zap.b01|b46bb2862eb903475364175858240f39466a5d5f
 vendor/firmware/a650_zap.b02|270bae014df75a913c6c124155f2cc85706258e6
-vendor/firmware/a650_zap.elf|2ab3ffe2ff357441458204a59fe009c85188dda3
-vendor/firmware/a650_zap.mdt|3e85ffe17b3aae25f93d858d684c9964a2c045e5
+vendor/firmware/a650_zap.elf|8fc3f85d44b349931b6842f8847262a95570b830
+vendor/firmware/a650_zap.mdt|b3c6875ff8e8e8853669b1981405d1d1a4bebcca
 
 # Audio
 vendor/lib/hw/sound_trigger.primary.kona.so
@@ -809,7 +809,7 @@ vendor/lib64/libnpu.so
 vendor/lib64/unnhal-acc-hta.so
 
 # NPU - OOS
-vendor/lib/rfsa/adsp/libhta_dsp_skel.so|7da5f78314da08f04495b921ebc94fff291dbfc2
+vendor/lib/rfsa/adsp/libhta_dsp_skel.so|a32690a219a7449046e7318165a4dea88bb4324c
 vendor/lib/rfsa/adsp/libinterstellar_skel.so|d40f8cf3faeb3526c9b8cf4ce1490810bcdb8835
 
 # Neural Networks
@@ -834,7 +834,7 @@ vendor/bin/pm-service
 vendor/lib64/libperipheral_client.so
 
 # Power - OOS
-vendor/etc/powerhint.xml|55f1ae2e04225a5425f7e496c6d14ac9822188d0
+vendor/etc/powerhint.xml|483d32e452b8da6b9295964ba9053887b2a374b1
 
 # Public Libraries
 vendor/etc/public.libraries.txt
