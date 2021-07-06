@@ -75,6 +75,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     audio.bluetooth.default \
     android.hardware.bluetooth.audio@2.0-impl \
+    bt-mac-generator \
     com.dsi.ant@1.0.vendor \
     com.qualcomm.qti.bluetooth_audio@1.0.vendor \
     libbluetooth_audio_session \
@@ -93,6 +94,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.qcom.bluetooth.soc=hastings \
     persist.vendor.qcom.bluetooth.twsp_state.enabled=false \
     ro.vendor.bluetooth.wipower=false \
+    ro.vendor.bt.bdaddr_path=/data/vendor/bluetooth/bdaddr \
     vendor.qcom.bluetooth.soc=hastings
 
 # Boot
