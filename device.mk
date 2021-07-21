@@ -97,6 +97,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.bt.bdaddr_path=/data/vendor/bluetooth/bdaddr \
     vendor.qcom.bluetooth.soc=hastings
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.control_privapp_permissions=log
+
 # Boot
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.1-impl-qti \
@@ -220,7 +223,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # LiveDisplay
 PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@2.0-service-sdm
+    vendor.lineage.livedisplay@2.1-service.oneplus_kona
 
 # Namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -239,7 +242,6 @@ PRODUCT_PACKAGES += \
     FrameworksResTarget \
     OnePlus8Frameworks \
     OnePlus8SeriesFrameworks \
-    OnePlus8SeriesSettings \
     OnePlus8SeriesSystemUI \
     OnePlus8SystemUI \
     WifiResTarget
