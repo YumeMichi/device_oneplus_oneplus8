@@ -216,6 +216,54 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hardware.keystore_desede=true
 
+# Media
+PRODUCT_PACKAGES += \
+    libmm-omxcore \
+    libOmxCore \
+    libc2dcolorconvert \
+    libOmxSwVdec \
+    libOmxSwVencMpeg4 \
+    libOmxVdec \
+    libOmxVenc \
+    libstagefrighthw \
+    init.qti.media.sh
+
+PRODUCT_COPY_FILES += \
+    device/qcom/common/media/media_profiles.xml:$(TARGET_COPY_OUT_ODM)/etc/media_profiles_V1_0.xml \
+    hardware/qcom/media/conf_files/kona/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
+    hardware/qcom/media/conf_files/kona/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_kona_vendor.xml \
+    hardware/qcom/media/conf_files/kona/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_kona.xml \
+    hardware/qcom/media/conf_files/kona/media_codecs_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_kona_vendor.xml \
+    hardware/qcom/media/conf_files/kona/media_codecs_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_kona.xml \
+    hardware/qcom/media/conf_files/kona/media_codecs_vendor_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_vendor_audio.xml \
+    hardware/qcom/media/conf_files/kona/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_vendor.xml \
+    hardware/qcom/media/conf_files/kona/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_kona.xml \
+    hardware/qcom/media/conf_files/kona/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
+    hardware/qcom/media/conf_files/kona/system_properties.xml:$(TARGET_COPY_OUT_VENDOR)/etc/system_properties.xml
+
+PRODUCT_COPY_FILES += \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_c2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_c2_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_video.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video_le.xml
+
+PRODUCT_PACKAGES += \
+    libcodec2_vndk.vendor \
+    libcodec2_hidl@1.0.vendor \
+    libgui_vendor \
+    libstagefright_softomx.vendor
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.stagefright.ccodec=1
+
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    media.settings.xml=/vendor/etc/media_profiles_vendor.xml \
+    media.stagefright.thumbnail.prefer_hw_codecs=true \
+    ro.media.recorder-max-base-layer-fps=60
+
 # Namespaces
 PRODUCT_SOONG_NAMESPACES += \
     device/oneplus/oneplus8
@@ -251,7 +299,22 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.qspm.enable=true
 
 # QTI
-TARGET_COMMON_QTI_COMPONENTS := all
+TARGET_COMMON_QTI_COMPONENTS := \
+    adreno \
+    audio \
+    av \
+    bt \
+    display \
+    gps \
+    init \
+    nq-nfc \
+    overlay \
+    perf \
+    telephony \
+    usb \
+    vibrator \
+    wfd \
+    wlan
 
 # Sensors
 PRODUCT_COPY_FILES += \

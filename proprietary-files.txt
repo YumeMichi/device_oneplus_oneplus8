@@ -778,6 +778,22 @@ vendor/lib64/libspcom.so
 # Latency
 vendor/lib64/vendor.qti.hardware.data.latency@1.0.so
 
+# Media - OOS
+vendor/bin/mm-vidc-omx-test
+vendor/lib/libfastcrc.so
+-vendor/lib/libMpeg4SwEncoder.so
+vendor/lib/libOmxSwVdec.so
+vendor/lib/libOmxSwVencMpeg4.so
+vendor/lib/libstreamparser.so
+vendor/lib/libswvdec.so
+vendor/lib/libvideooptfeature.so
+vendor/lib/libvideoutils.so
+-vendor/lib64/libMpeg4SwEncoder.so
+vendor/lib64/libOmxSwVdec.so
+vendor/lib64/libOmxSwVencMpeg4.so
+vendor/lib64/libswvdec.so
+vendor/lib64/libvideooptfeature.so
+
 # MDM
 vendor/bin/ks
 vendor/bin/mdm_helper
