@@ -60,9 +60,6 @@ TARGET_SURFACEFLINGER_UDFPS_LIB := //device/oneplus/common:libudfps_extension.on
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := kona
 
-# Display
-TARGET_USES_FOD_ZPOS := true
-
 # DTB
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_BOOTIMG_HEADER_VERSION := 2
