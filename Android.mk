@@ -44,6 +44,12 @@ $(EGL_64_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@rm -rf $@
 	$(hide) ln -sf egl/$(notdir $@) $@
 
+ACDBDATA_SYMLINKS := $(TARGET_OUT_ODM)/etc/acdbdata
+$(ACDBDATA_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "Creating acdbdata symlinks: $@"
+	@mkdir -p $@
+	$(hide) ln -sf /vendor/etc/acdbdata/adsp_avs_config.acdb $@/adsp_avs_config.acdb
+
 RFS_MDM_ADSP_SYMLINKS := $(TARGET_OUT_VENDOR)/rfs/mdm/adsp/
 $(RFS_MDM_ADSP_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@rm -rf $@/*
@@ -109,6 +115,7 @@ ALL_DEFAULT_INSTALLED_MODULES += \
     $(CNE_SYMLINKS) \
     $(EGL_32_SYMLINKS) \
     $(EGL_64_SYMLINKS) \
+    $(ACDBDATA_SYMLINKS) \
     $(RFS_MDM_ADSP_SYMLINKS) \
     $(RFS_MDM_CDSP_SYMLINKS) \
     $(RFS_MDM_MPSS_SYMLINKS) \

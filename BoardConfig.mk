@@ -55,7 +55,7 @@ TARGET_2ND_CPU_VARIANT := cortex-a76
 AUDIO_FEATURE_ENABLED_EXT_AMPLIFIER := true
 
 # Biometrics
-TARGET_SURFACEFLINGER_UDFPS_LIB := //device/oneplus/common:libudfps_extension.oneplus
+TARGET_SURFACEFLINGER_UDFPS_LIB := //hardware/oplus:libudfps_extension.oplus
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := kona
@@ -77,8 +77,7 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     vendor/qcom/opensource/core-utils/vendor_framework_compatibility_matrix.xml
 
 DEVICE_MANIFEST_FILE += \
-    $(DEVICE_PATH)/manifest.xml \
-    $(DEVICE_PATH)/oneplus_manifest.xml
+    $(DEVICE_PATH)/manifest.xml
 
 DEVICE_MATRIX_FILE += device/qcom/common/compatibility_matrix.xml
 

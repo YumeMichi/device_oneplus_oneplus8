@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # A/B
-ifneq ($(filter pa_oneplus8 pa_oneplus8pro,$(TARGET_PRODUCT)),)
+ifneq ($(filter aospa_oneplus8 aospa_oneplus8pro,$(TARGET_PRODUCT)),)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota_retrofit.mk)
 endif
 
@@ -47,9 +47,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.device_id_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.device_id_attestation.xml
 
 # Audio
-PRODUCT_PACKAGES += \
-    audio_amplifier.kona
-
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.vc_call_vol_steps=7
 
@@ -58,10 +55,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
 
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.3-service.oneplus \
-    vendor.goodix.hardware.biometrics.fingerprint@2.1.vendor \
-    vendor.oneplus.fingerprint.extension@1.0.vendor \
-    vendor.oneplus.hardware.display@1.0.vendor
+    android.hardware.biometrics.fingerprint@2.3-service.oplus
 
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.boot.fingerprintbstate=orange
@@ -77,7 +71,6 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0 \
     android.hardware.bluetooth@1.0.vendor \
     android.hardware.bluetooth.audio@2.1 \
-    bt-mac-generator \
     com.dsi.ant@1.0.vendor \
     com.qualcomm.qti.bluetooth_audio@1.0.vendor \
     libbluetooth_audio_session \
@@ -122,10 +115,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.charger.enable_suspend=1
 
-# Config Store
-PRODUCT_PACKAGES += \
-    disable_configstore
-
 # DPM
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.dpmhalservice.enable=1
@@ -139,20 +128,15 @@ PRODUCT_PACKAGES += \
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
 # Display
-PRODUCT_PACKAGES += \
-    vendor.oneplus.hardware.display@1.0.vendor
-
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.sf.native_mode=2 \
-    ro.vendor.display.sensortype=2 \
-    vendor.display.disable_mask_layer_hint=1 \
     vendor.display.enable_async_powermode=0 \
     vendor.display.use_layer_ext=1 \
     ro.surface_flinger.refresh_rate_switching=true \
     ro.surface_flinger.set_idle_timer_ms=4000 \
     ro.surface_flinger.set_touch_timer_ms=4000 \
     ro.surface_flinger.set_display_power_timer_ms=1000 \
-    ro.surface_flinger.use_content_detection_for_refresh_rate=true
+    ro.surface_flinger.use_content_detection_for_refresh_rate=true \
+    vendor.display.primary_mixer_stages=9
 
 # Factory Reset Protection
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -194,14 +178,10 @@ PRODUCT_PACKAGES += \
     fstab.qcom \
     init.oneplus.rc \
     init.oneplus.display.rc \
-    init.oneplus.fingerprint.rc \
     init.oneplus.haptics.rc \
-    init.oneplus.power.rc \
     init.oneplus.telephony.rc \
     init.oneplus.usb.rc \
-    init.qti.chg_policy.sh \
     init.qti.dcvs.sh \
-    init.qti.ufs.rc \
     init.target.rc \
     ueventd.oneplus.rc
 
@@ -224,14 +204,10 @@ PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.1 \
     android.hardware.keymaster@4.1.vendor
 
-# lmkd
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.lmk.force_inkernel_lmk=true
-
 # Namespaces
 PRODUCT_SOONG_NAMESPACES += \
-    device/oneplus/common \
-    device/oneplus/oneplus8
+    device/oneplus/oneplus8 \
+    hardware/oplus
 
 # Netflix
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -300,8 +276,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.hifi_sensors.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.hifi_sensors.xml
 
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@2.1-service.multihal.oneplus \
-    libsensorndkbridge
+    android.hardware.sensors@2.1-service.multihal \
+    libsensorndkbridge \
+    sensors.oplus
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.sensors.sync_request=true \
@@ -341,7 +318,7 @@ PRODUCT_COPY_FILES += \
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    vendor.qti.hardware.vibrator.service.oneplus
+    vendor.qti.hardware.vibrator.service.oplus
 
 # VNDK
 PRODUCT_EXTRA_VNDK_VERSIONS := 30
