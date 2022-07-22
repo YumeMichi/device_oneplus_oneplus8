@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # A/B
-ifneq ($(filter pa_oneplus8 pa_oneplus8pro,$(TARGET_PRODUCT)),)
+ifneq ($(filter aospa_oneplus8 aospa_oneplus8pro,$(TARGET_PRODUCT)),)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota_retrofit.mk)
 endif
 
