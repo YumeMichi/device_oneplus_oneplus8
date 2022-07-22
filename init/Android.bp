@@ -19,57 +19,44 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
-    name: "init.oneplus.rc",
-    src: "init.oneplus.rc",
+    name: "init.oplus.hw.rc",
+    src: "init.oplus.hw.rc",
+    sub_dir: "init",
+    device_specific: true,
+    recovery_available: true,
+}
+
+prebuilt_etc {
+    name: "init.oplus.rc",
+    src: "init.oplus.rc",
     sub_dir: "init",
     vendor: true,
 }
 
 prebuilt_etc {
-    name: "init.oneplus.camera.rc",
-    src: "init.oneplus.camera.rc",
+    name: "init.oplus.camera.rc",
+    src: "init.oplus.camera.rc",
     sub_dir: "init",
     vendor: true,
 }
 
 prebuilt_etc {
-    name: "init.oneplus.display.rc",
-    src: "init.oneplus.display.rc",
+    name: "init.oplus.display.rc",
+    src: "init.oplus.display.rc",
     sub_dir: "init",
     vendor: true,
 }
 
 prebuilt_etc {
-    name: "init.oneplus.fingerprint.rc",
-    src: "init.oneplus.fingerprint.rc",
+    name: "init.oplus.telephony.rc",
+    src: "init.oplus.telephony.rc",
     sub_dir: "init",
     vendor: true,
 }
 
 prebuilt_etc {
-    name: "init.oneplus.haptics.rc",
-    src: "init.oneplus.haptics.rc",
-    sub_dir: "init",
-    vendor: true,
-}
-
-prebuilt_etc {
-    name: "init.oneplus.power.rc",
-    src: "init.oneplus.power.rc",
-    sub_dir: "init",
-    vendor: true,
-}
-
-prebuilt_etc {
-    name: "init.oneplus.telephony.rc",
-    src: "init.oneplus.telephony.rc",
-    sub_dir: "init",
-    vendor: true,
-}
-
-prebuilt_etc {
-    name: "init.oneplus.usb.rc",
-    src: "init.oneplus.usb.rc",
+    name: "init.oplus.usb.rc",
+    src: "init.oplus.usb.rc",
     sub_dir: "init",
     vendor: true,
 }
@@ -82,16 +69,16 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
-    name: "ueventd.oneplus.rc",
+    name: "ueventd.oplus.rc",
     filename: "ueventd.rc",
-    src: "ueventd.oneplus.rc",
+    src: "ueventd.oplus.rc",
     vendor: true,
 }
 
 sh_binary {
-    name: "init.qti.chg_policy.sh",
-    src: "init.qti.chg_policy.sh",
-    vendor: true,
+    name: "init.oplus.sh",
+    src: "init.oplus.sh",
+    device_specific: true,
 }
 
 sh_binary {

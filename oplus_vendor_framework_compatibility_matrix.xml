@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-     Copyright (C) 2021 Paranoid Android
+<!-- Copyright (C) 2020 Paranoid Android
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,14 +12,13 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
-
-    <!-- Alert Slider UI -->
-    <dimen name="tri_state_down_dialog_position">565px</dimen>
-    <dimen name="tri_state_middle_dialog_position">440px</dimen>
-    <dimen name="tri_state_up_dialog_position">315px</dimen>
-
-    <!-- Margin on the left side of the heads up notification -->
-    <dimen name="heads_up_status_bar_padding_start">112px</dimen>
-
-</resources>
+<compatibility-matrix version="1.0" type="framework">
+    <hal format="hidl" optional="true">
+        <name>vendor.oplus.hardware.biometrics.fingerprint</name>
+        <version>2.1</version>
+        <interface>
+            <name>IBiometricsFingerprint</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+</compatibility-matrix>

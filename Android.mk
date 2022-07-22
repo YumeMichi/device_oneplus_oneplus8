@@ -44,6 +44,12 @@ $(EGL_64_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@rm -rf $@
 	$(hide) ln -sf egl/$(notdir $@) $@
 
+ACDBDATA_SYMLINKS := $(TARGET_OUT_ODM)/etc/acdbdata
+$(ACDBDATA_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "Creating acdbdata symlinks: $@"
+	@mkdir -p $@
+	$(hide) ln -sf /vendor/etc/acdbdata/adsp_avs_config.acdb $@/adsp_avs_config.acdb
+
 RFS_MDM_ADSP_SYMLINKS := $(TARGET_OUT_VENDOR)/rfs/mdm/adsp/
 $(RFS_MDM_ADSP_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@rm -rf $@/*
@@ -99,16 +105,15 @@ $(RFS_MDM_TN_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 WLAN_FIRMWARE_SYMLINKS := $(TARGET_OUT_VENDOR)/firmware/wlan/qca_cld
 $(WLAN_FIRMWARE_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "Creating WLAN firmware symlinks: $@"
-	mkdir -p $@/qca6390
-	$(hide) ln -sf /vendor/etc/wifi/WCNSS_qcom_cfg.ini $@/qca6390/WCNSS_qcom_cfg.ini
-	$(hide) ln -sf /vendor/etc/wifi/WCNSS_qcom_cfg.ini $@/WCNSS_qcom_cfg.ini
-	$(hide) ln -sf /mnt/vendor/persist/qca6390/wlan_mac.bin $@/qca6390/wlan_mac.bin
+	mkdir -p $@
+	$(hide) ln -sf /odm/vendor/etc/wifi/WCNSS_qcom_cfg.ini $@/WCNSS_qcom_cfg.ini
 	$(hide) ln -sf /mnt/vendor/persist/qca6390/wlan_mac.bin $@/wlan_mac.bin
 
 ALL_DEFAULT_INSTALLED_MODULES += \
     $(CNE_SYMLINKS) \
     $(EGL_32_SYMLINKS) \
     $(EGL_64_SYMLINKS) \
+    $(ACDBDATA_SYMLINKS) \
     $(RFS_MDM_ADSP_SYMLINKS) \
     $(RFS_MDM_CDSP_SYMLINKS) \
     $(RFS_MDM_MPSS_SYMLINKS) \

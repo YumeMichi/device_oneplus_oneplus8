@@ -38,8 +38,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 # Alert Slider
 PRODUCT_PACKAGES += \
-    TriStateHandler \
-    tri-state-key_daemon
+    KeyHandler \
+    tri-state-key-calibrate
 
 # Attestation
 PRODUCT_COPY_FILES += \
@@ -49,27 +49,16 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     audio_amplifier.kona
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.vc_call_vol_steps=7
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.config.vc_call_vol_steps=9
 
 # Biometrics
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml \
-    vendor/pa/config/permissions/vendor.aospa.biometrics.fingerprint.inscreen.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/vendor.aospa.biometrics.fingerprint.inscreen.xml
+    frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
 
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.2-service.oneplus8 \
-    vendor.aospa.biometrics.fingerprint.inscreen@1.0-service \
-    vendor.goodix.hardware.biometrics.fingerprint@2.1.vendor \
-    vendor.oneplus.fingerprint.extension@1.0.vendor
-
-PRODUCT_SYSTEM_EXT_PROPERTIES += \
-    persist.sys.fod.pos.x=453 \
-    persist.sys.fod.pos.y=1823 \
-    persist.sys.fod.size=174
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    vendor.boot.fingerprintbstate=orange
+    android.hardware.biometrics.fingerprint@2.3-service.oplus \
+    libshims_fingerprint.oplus
 
 # Bluetooth
 PRODUCT_PACKAGES += \
@@ -80,10 +69,12 @@ PRODUCT_PACKAGES += \
     libbluetooth_audio_session \
     vendor.qti.hardware.bluetooth_audio@2.1.vendor \
     vendor.qti.hardware.btconfigstore@1.0.vendor \
-    vendor.qti.hardware.btconfigstore@2.0.vendor
+    vendor.qti.hardware.btconfigstore@2.0.vendor \
+    vendor.qti.hardware.fm@1.0.vendor
 
-PRODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_VENDOR_PROPERTIES += \
     persist.sys.fflag.override.settings_bluetooth_hearing_aid=true \
+    persist.vendor.bluetooth.modem_nv_support=true \
     persist.vendor.qcom.bluetooth.a2dp_mcast_test.enabled=false \
     persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac-aptxadaptiver2 \
     persist.vendor.qcom.bluetooth.aac_frm_ctl.enabled=true \
@@ -111,19 +102,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service_64 \
-    libcamera2ndk_vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
 
 # Charging
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.charger.enable_suspend=1
 
-# Config Store
-PRODUCT_PACKAGES += \
-    disable_configstore
-
 # DPM
-PRODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.dpmhalservice.enable=1
 
 # DRM
@@ -134,27 +120,17 @@ PRODUCT_PACKAGES += \
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
 # Display
-PRODUCT_PACKAGES += \
-    vendor.oneplus.hardware.display@1.0.vendor
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.display.sensortype=2 \
+PRODUCT_VENDOR_PROPERTIES += \
     vendor.display.enable_async_powermode=0 \
-    vendor.display.use_layer_ext=1 \
+    vendor.display.primary_mixer_stages=9 \
     ro.surface_flinger.set_idle_timer_ms=4000 \
     ro.surface_flinger.set_touch_timer_ms=4000 \
-    ro.surface_flinger.set_display_power_timer_ms=1000
-
-# Doze
-PRODUCT_PACKAGES += \
-    ParanoidDoze
-
-PRODUCT_SYSTEM_EXT_PROPERTIES += \
-    ro.sensor.pickup=oneplus.sensor.op_motion_detect
+    ro.surface_flinger.set_display_power_timer_ms=1000 \
+    ro.surface_flinger.use_content_detection_for_refresh_rate=true
 
 # Factory Reset Protection
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.frp.pst=/dev/block/bootdevice/by-name/config
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.frp.pst=/dev/block/bootdevice/by-name/frp
 
 # Fastboot
 PRODUCT_PACKAGES += \
@@ -164,11 +140,14 @@ PRODUCT_PACKAGES += \
 # GPS
 LOC_HIDL_VERSION = 4.0
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/gps/gps.conf:$(TARGET_COPY_OUT_ODM)/etc/gps.conf
+
 # GSI
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 
 # Gatekeeper
-PRODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_VENDOR_PROPERTIES += \
     vendor.gatekeeper.disable_spu=true
 
 # Health
@@ -177,7 +156,7 @@ PRODUCT_PACKAGES += \
     android.hardware.health@2.1-service
 
 # Incremental FS
-PRODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_VENDOR_PROPERTIES += \
     ro.incremental.enable=1
 
 # Init
@@ -186,49 +165,44 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    init.oneplus.rc \
-    init.oneplus.camera.rc \
-    init.oneplus.display.rc \
-    init.oneplus.fingerprint.rc \
-    init.oneplus.haptics.rc \
-    init.oneplus.power.rc \
-    init.oneplus.telephony.rc \
-    init.oneplus.usb.rc \
-    init.qti.chg_policy.sh \
+    init.oplus.hw.rc \
+    init.oplus.hw.rc.recovery \
+    init.oplus.rc \
+    init.oplus.sh \
+    init.oplus.camera.rc \
+    init.oplus.display.rc \
+    init.oplus.telephony.rc \
+    init.oplus.usb.rc \
     init.qti.dcvs.sh \
-    init.qti.ufs.rc \
     init.target.rc \
-    ueventd.oneplus.rc
+    ueventd.oplus.rc
 
 # Keymaster
-PRODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_VENDOR_PROPERTIES += \
     ro.crypto.volume.filenames_mode="aes-256-cts" \
     ro.crypto.allow_encrypt_override=true
 
-PRODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_VENDOR_PROPERTIES += \
     ro.crypto.dm_default_key.options_format.version=2 \
     ro.crypto.volume.metadata.method=dm-default-key
 
-PRODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_VENDOR_PROPERTIES += \
     ro.hardware.keystore_desede=true
 
 # Namespaces
 PRODUCT_SOONG_NAMESPACES += \
-    device/oneplus/oneplus8
-
-# Netflix
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.netflix.bsp_rev=Q8250-19134-1
+    device/oneplus/oneplus8 \
+    hardware/oplus
 
 # Overlays
 PRODUCT_PACKAGES += \
     AOSPAOnePlus8SeriesFrameworks \
-    AOSPAOnePlus8SeriesSettings \
     AOSPAOnePlus8SeriesSystemUI \
     AOSPAOnePlus8SystemUI \
     FrameworksResTarget \
     OnePlus8Frameworks \
     OnePlus8SeriesFrameworks \
+    OnePlus8SeriesSettings \
     OnePlus8SeriesSystemUI \
     OnePlus8SystemUI \
     WifiResTarget
@@ -243,7 +217,7 @@ TARGET_BOARD_PLATFORM := kona
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
 # QSPM
-PRODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_VENDOR_PROPERTIES += \
     ro.vendor.qspm.enable=true
 
 # QTI
@@ -261,19 +235,22 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.gyroscope.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.proximity.xml \
-    frameworks/native/data/etc/android.hardware.sensor.barometer.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_9/android.hardware.sensor.barometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.barometer.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_11/android.hardware.sensor.barometer.xml \
+    frameworks/native/data/etc/android.hardware.sensor.barometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.barometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.stepcounter.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.stepdetector.xml \
     frameworks/native/data/etc/android.hardware.sensor.ambient_temperature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.ambient_temperature.xml \
     frameworks/native/data/etc/android.hardware.sensor.relative_humidity.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.relative_humidity.xml \
     frameworks/native/data/etc/android.hardware.sensor.hifi_sensors.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.hifi_sensors.xml
 
-PRODUCT_PACKAGES += \
-    android.hardware.sensors@2.0-service.multihal \
-    libsensorndkbridge
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
 
-PRODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_PACKAGES += \
+    android.hardware.sensors@2.1-service.multihal \
+    libsensorndkbridge \
+    sensors.oplus
+
+PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.sensors.sync_request=true \
     persist.vendor.sensors.allow_non_default_discovery=true
 
@@ -284,7 +261,7 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
 PRODUCT_SHIPPING_API_LEVEL := 29
 
 # SOC Properties
-PRODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_VENDOR_PROPERTIES += \
     ro.soc.manufacturer=QTI \
     ro.soc.model=SM8250
 
@@ -311,9 +288,4 @@ PRODUCT_COPY_FILES += \
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    vendor.qti.hardware.vibrator.service.oneplus8
-
-# WLAN
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/wlan/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini \
-    $(LOCAL_PATH)/configs/wlan/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf
+    vendor.qti.hardware.vibrator.service.oplus
